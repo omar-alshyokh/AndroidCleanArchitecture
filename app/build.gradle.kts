@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.dagger.hilt.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -66,4 +68,46 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+
+
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.viewmodel.kts)
+    implementation(libs.lifecycle.runtime.kts)
+
+    // hilt-dagger
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+
+    // hilt
+//    implementation(libs.hilt.lifecycle.viewmodel)
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
+
+    /// retrofit
+    implementation(libs.squareup.retrofit2.retrofit)
+    implementation(libs.squareup.retrofit2.converter.gson)
+    implementation(libs.squareup.okhttp)
+
+
+    // room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.androidx.room.compiler)
+
+    // To use Kotlin annotation processing took (kapt)
+    kapt(libs.androidx.room.compiler)
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.play.services)
+
+    implementation(libs.coil.compose)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
